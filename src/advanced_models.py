@@ -1,5 +1,6 @@
 from statsmodels.tsa.api import VAR
-from statsmodels.tsa.regime_switching.markov_switching import MarkovSwitchingARIMA
+from statsmodels.tsa.regime_switching.markov_switching import MarkovSwitching
+
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import LSTM, Dense, Dropout
 from sklearn.preprocessing import MinMaxScaler
@@ -10,7 +11,8 @@ def fit_var(df):
     return model.fit()
 
 def fit_markov_switching(df):
-    model = MarkovSwitchingARIMA(df['Price'], order=(1, 0, 1), k_regimes=2)
+    """Fit a Markov Switching model for regime changes in the data."""
+    model = MarkovSwitching(df['Price'], k_regimes=2, trend='c', switching_variance=True)
     return model.fit()
 
 def fit_lstm(df, look_back=60):

@@ -6,16 +6,27 @@ from tensorflow.keras.layers import LSTM, Dense, Dropout
 from sklearn.preprocessing import MinMaxScaler
 import numpy as np
 
+from statsmodels.tsa.api import VAR
+import pandas as pd
+
 def fit_var(df):
+    """Fit a Vector Autoregression model for multivariate time series analysis."""
+    # Ensure the index is datetime and set daily frequency if not already defined
+    if df.index.freq is None:
+        df.index = pd.to_datetime(df.index)
+        df = df.asfreq('D')
+    
+    # Initialize and fit the VAR model
     model = VAR(df)
     return model.fit()
 
 def fit_markov_switching(df):
     """Fit a Markov Switching model for regime changes in the data."""
-    model = MarkovSwitching(df['Price'], k_regimes=2, trend='c', switching_variance=True)
+    model = MarkovSwitching(df['Price'], k_regimes=2, switching_variance=True)
     return model.fit()
 
 def fit_lstm(df, look_back=60):
+    """Fit a Long Short-Term Memory (LSTM) model for time series forecasting."""
     scaler = MinMaxScaler()
     data = scaler.fit_transform(df['Price'].values.reshape(-1, 1))
     
@@ -37,5 +48,5 @@ def fit_lstm(df, look_back=60):
     model.add(Dense(1))
     model.compile(optimizer='adam', loss='mean_squared_error')
     
-    model.fit(X, y, epochs=20, batch_size=32)
+    model.fit(X, y, epochs=10, batch_size=32)
     return model, scaler

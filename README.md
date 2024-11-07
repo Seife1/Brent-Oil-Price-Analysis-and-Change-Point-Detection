@@ -23,4 +23,29 @@ Define the Workflow: Outline steps and processes, understand model inputs and ou
 Understand Models: Familiarize with time series models (e.g., ARIMA, GARCH) for analyzing price fluctuations.
 #### Task 2: Analyzing Brent Oil Prices and Exploring Influential Factors
 
-...
+1. Time Series Analysis: Build on foundational knowledge to analyze historical data.
+2. Advanced Models:
+- **VAR (Vector Autoregression)**: For multivariate analysis.
+- **Markov-Switching ARIMA:** For detecting different market conditions.
+- **LSTM (Long Short-Term Memory):** For capturing complex patterns.
+3. Explore Additional Factors:
+- Economic indicators (GDP, inflation, exchange rates).
+- Technological changes (advancements in extraction, renewable energy).
+- Political factors (trade policies, environmental regulations).
+
+#### Task 3: Dashboard Development
+Develop an interactive dashboard using Flask (backend) and React (frontend) for stakeholders to explore and visualize the effects of various events on oil prices.
+
+* Backend: Develop APIs for data access, manage data requests.
+* Frontend: Design interactive visualizations (e.g., filters, date ranges, event highlights).
+
+## Technologies and Tools
+`Python`: For data analysis and modeling (e.g., using PyMC3 for Bayesian inference).
+
+`PyMC3`: Bayesian modeling and change point detection.
+
+`Flask`: Backend API for the dashboard.
+
+`React`: Frontend for an interactive user interface.
+
+`Data Visualization:` Recharts, React Chart.js 2, D3.js.
